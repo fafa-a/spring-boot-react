@@ -37,6 +37,7 @@
   },
   "proxy": "http://localhost:8081/api",
   "devDependencies": {
+    "antd": "^4.20.2",
     "unfetch": "^4.2.0"
   }
 }

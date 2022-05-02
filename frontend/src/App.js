@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react"
 import "./App.css"
 import { getAllStudents } from "./client"
+import { Table } from "antd"
+import Container from "./Container"
 
 function App() {
   const [students, setStudents] = useState([])
+
   useEffect(() => {
     fetchStudents()
-  })
+  }, [])
+
   const fetchStudents = () => {
     getAllStudents()
       .then(res => res.json())
@@ -17,14 +21,22 @@ function App() {
 
   if (students?.length) {
     return students.map((student, id) => {
+      const columns = [
+        { title: "Student ID", dataIndex: "studentID", key: "studentID" },
+        { title: "First Name", dataIndex: "firstName", key: "firstName" },
+        { title: "Last Name", dataIndex: "lastName", key: "lastName" },
+        { title: "email", dataIndex: "email", key: "email" },
+        { title: "Gender", dataIndex: "gender", key: "gender" },
+      ]
       return (
-        <div key={id}>
-          <h2>{student.studentId}</h2>
-          <h2>{student.firstName}</h2>
-          <h2>{student.lastName}</h2>
-          <h2>{student.gender}</h2>
-          <h2>{student.email}</h2>
-        </div>
+        <Container>
+          <Table
+            dataSource={students}
+            columns={columns}
+            pagination={false}
+            rowKey="studentID"
+          />
+        </Container>
       )
     })
   }
