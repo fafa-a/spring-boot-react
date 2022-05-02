@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api")
 public class StudentController {
 
-  @GetMapping
+  @GetMapping("/students")
   public List<Student> getAllStudents() {
     return List.of(
         new Student(UUID.randomUUID(), "Cyvian", "Him", "cycy@mail.com", Student.Gender.FEMALE),
