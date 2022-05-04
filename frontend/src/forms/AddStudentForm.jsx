@@ -1,8 +1,13 @@
 import React from "react"
 import { Formik } from "formik"
-import { Button, Input } from "antd"
+import { Button, Input, Tag } from "antd"
 
 const inputBottomMargin = { marginBottom: "10px" }
+const tagStyle = {
+  backgroundColor: "#f50",
+  color: "white",
+  ...inputBottomMargin,
+}
 
 const AddStudentForm = props => {
   return (
@@ -62,7 +67,9 @@ const AddStudentForm = props => {
             value={values.firstname}
             placeholder="First Name E.g John"
           />
-          {errors.firstname && touched.firstname && errors.firstname}
+          {errors.firstname && touched.firstname && (
+            <Tag style={tagStyle}>{errors.firstname}</Tag>
+          )}
           <Input
             style={inputBottomMargin}
             name="lastname"
@@ -71,7 +78,9 @@ const AddStudentForm = props => {
             value={values.lastname}
             placeholder="Last Name E.g Doe"
           />
-          {errors.lastname && touched.lastname && errors.lastname}
+          {errors.lastname && touched.lastname && (
+            <Tag style={tagStyle}>{errors.lastname}</Tag>
+          )}
           <Input
             style={inputBottomMargin}
             type="email"
@@ -81,7 +90,9 @@ const AddStudentForm = props => {
             value={values.email}
             placeholder="Email. E.g example@gmail.com"
           />
-          {errors.email && touched.email && errors.email}
+          {errors.email && touched.email && (
+            <Tag style={tagStyle}>{errors.email}</Tag>
+          )}
           <Input
             style={inputBottomMargin}
             name="gender"
@@ -90,16 +101,9 @@ const AddStudentForm = props => {
             value={values.gender}
             placeholder="Gender. E.g Male or Female"
           />
-          {errors.gender && touched.gender && errors.gender}
-          {/* <Input
-            style={inputBottomMargin}
-             type="password"
-            name="password"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.password}
-          />
-          {errors.password && touched.password && errors.password} */}
+          {errors.gender && touched.gender && (
+            <Tag style={tagStyle}>{errors.gender}</Tag>
+          )}
           <Button type="submit" disabled={isSubmitting}>
             Submit
           </Button>
