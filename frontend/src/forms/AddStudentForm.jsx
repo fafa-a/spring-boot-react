@@ -7,15 +7,32 @@ const inputBottomMargin = { marginBottom: "10px" }
 const AddStudentForm = props => {
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
+      initialValues={{ firstname: "", lastname: "", email: "", gender: "" }}
       validate={values => {
         const errors = {}
+
+        if (!values.firstname) {
+          errors.firstname = "Firstname Required"
+        }
+
+        if (!values.lastname) {
+          errors.lastname = "Lastname Required"
+        }
+
         if (!values.email) {
-          errors.email = "Required"
+          errors.email = "Email Required"
         } else if (
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
         ) {
           errors.email = "Invalid email address"
+        }
+
+        if (!values.gender) {
+          errors.gender = "Gender Required"
+        } else if (
+          !["MALE", "male", "FEMALE", "female"].includes(values.gender)
+        ) {
+          errors.gender = "Gender must be ( MALE, male, FEMALE, female) "
         }
         return errors
       }}
@@ -74,15 +91,15 @@ const AddStudentForm = props => {
             placeholder="Gender. E.g Male or Female"
           />
           {errors.gender && touched.gender && errors.gender}
-          <Input
+          {/* <Input
             style={inputBottomMargin}
-            type="password"
+             type="password"
             name="password"
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.password}
           />
-          {errors.password && touched.password && errors.password}
+          {errors.password && touched.password && errors.password} */}
           <Button type="submit" disabled={isSubmitting}>
             Submit
           </Button>
