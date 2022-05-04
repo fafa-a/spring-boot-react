@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
 import "./App.css"
 import { getAllStudents } from "./client"
-import { Avatar, Spin, Table } from "antd"
-import { FontSizeOutlined, LoadingOutlined } from "@ant-design/icons"
+import { Avatar, Table } from "antd"
+import { LoadingOutlined } from "@ant-design/icons"
 
 import Container from "./Container"
+import Footer from "./Footer"
 
 function App() {
   const [students, setStudents] = useState([])
@@ -18,8 +19,8 @@ function App() {
     setIsFetching(true)
     getAllStudents()
       .then(res => res.json())
-      .then(students => {
-        setStudents(students)
+      .then(data => {
+        setStudents(data)
         setIsFetching(false)
       })
   }
@@ -32,12 +33,12 @@ function App() {
     )
   }
   if (students?.length) {
-    return students.map((student, id) => {
+    return students.map((_student, id) => {
       const columns = [
         {
           title: "",
           key: "Avatar",
-          render: (text, student) => (
+          render: (_text, student) => (
             <Avatar size="large">
               {`${student.firstName.charAt(0).toUpperCase()}
                 ${student.lastName.charAt(0).toUpperCase()}`}
@@ -58,6 +59,7 @@ function App() {
             pagination={false}
             rowKey="studentID"
           />
+          <Footer numberOfStudents={students.length} />
         </Container>
       )
     })
