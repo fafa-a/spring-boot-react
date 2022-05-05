@@ -35,11 +35,11 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8081/api",
   "devDependencies": {
     "@ant-design/icons": "^4.7.0",
     "antd": "^4.20.2",
     "formik": "^2.2.9",
     "unfetch": "^4.2.0"
-  }
+  },
+  "proxy": "http://localhost:8081/api"
 }
